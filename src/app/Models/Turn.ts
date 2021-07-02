@@ -1,9 +1,9 @@
 export interface Turn {
 
-    id_turno : number,
-    id_servicio : number,
-    fecha_turno : Date,
-    hora_inicio : Date,
-    hora_fin : Date,
+    idTurno : number,
+    idServicio : number,
+    fechaTurno : Date,
+    horaInicio : Date,
+    horaFin : Date,
     estado : string
 }

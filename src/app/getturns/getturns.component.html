@@ -1,34 +1,68 @@
 <div>
-  <h3>Cart</h3>
+  <h3>Ingrsar datos Iniciales</h3>
   <router-outlet></router-outlet>
   <form novalidate [formGroup]="requestTurnForm" (ngSubmit)="onSubmit()">
   
-    <div>
+    <div class="row">
+    <div class="column">
       <label for="FechaInicio">
-        Fecha Inicial
+        Nombre empresa/ comercio
       </label>
-      <input id="FechaInicio" type="text" formControlName="FechaInicio">
     </div>
-  
-    <div>
-      <label for="FechaFin">
-        Fecha Final
-      </label>
-      <input id="FechaFin" type="text" formControlName="FechaFin">
+    <div class="column"> 
+      <select formControlName="IdServicio">
+        <option value="undefined" selected class="dropdown-item">
+          Seleccione nombre empresa....
+        </option>
+        <option [value]="name" *ngFor="let name of companyNames">
+          {{ name }}
+        </option>
+      </select>
     </div>
-  
-    <div>
-      <label for="IdServicio">
-        Fecha Final
-      </label>
-      <input id="IdServicio" type="text" formControlName="IdServicio">
     </div>
-  
+    <div class="row">
+      <div class="column">
+        <label for="FechaInicio">
+          Fecha Inicial
+        </label>
+      </div>
+      <div class="column">
+        <input id="FechaInicio" type="text" formControlName="FechaInicio" placeholder="aaaa/mm/dd">
+      </div>
+    </div>
+    <div class="row">
+      <div class="column">
+        <label for="FechaFin">
+          Fecha Final
+        </label>
+      </div>
+      <div class="column">
+        <input id="FechaFin" type="text" formControlName="FechaFin" placeholder="aaaa/mm/dd">
+      </div>
+    </div>
+  <br>
     <button class="button" type="submit">Generar</button>
   
   </form>
-
-  <ol>
-    <li *ngFor="let item of items"> {{ item.estado }} </li>
- </ol>
-</div>
+  <hr>
+  <h3>Turnos Asignados</h3>
+  <table *ngIf="items">
+    <thead>
+      <tr>
+        <th>Servicio</th>
+        <th>Fecha Turno</th>
+        <th>Hora Inicio</th>
+        <th>Hora Fin</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+      <tbody *ngFor="let item of items">
+        <tr>
+          <td>{{item.idServicio}}</td>
+          <td>{{item.fechaTurno | date:'yy/MM/dd'}}</td>
+          <td>{{item.horaInicio | date:'hh:mm'}}</td>
+          <td>{{item.horaFin | date:'hh:mm'}}</td>
+          <td>{{item.estado}}</td>
+        </tr>
+      </tbody>
+  </table>

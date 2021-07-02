@@ -305,8 +305,11 @@
 </style>
 
 <div class="content" role="main">
-  <h2>Comience a generar sus turnos</h2>
-  <hr>
-  <button class="button" type="submit" (click)="init()">Iniciar</button>
+  <div [hidden]="hidden">
+    <h2>Comience a generar sus turnos</h2>
+    <hr>
+    <button class="button" type="submit" (click)="init()">Iniciar</button>
+  </div>
+
   <router-outlet></router-outlet>
 </div>

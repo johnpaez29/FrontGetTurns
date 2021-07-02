@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { VMRequestTurn } from '../Models/RequestTurn';
 import { DatePipe } from '@angular/common';
 import { Turn } from '../Models/Turn';
-
+import { companyNames } from '../Models/companyNamesEnum';
 @Component({
   selector: 'app-getturns',
   templateUrl: './getturns.component.html',
@@ -22,11 +22,13 @@ export class GetturnsComponent implements OnInit {
  // Constants
   requestTurnForm : FormGroup = new FormGroup({});
   turn : VMRequestTurn = {
-    IdServicio : 0,
+    IdServicio : '',
     FechaFin : '',
     FechaInicio : ''
   };
-  items = Array<Turn>();
+  items : Turn[] = [];
+
+  companyNames : Array<string> = [];
 
   ngOnInit(): void {
     this.requestTurnForm = this.form.group
@@ -35,14 +37,18 @@ export class GetturnsComponent implements OnInit {
       FechaInicio: new FormControl('', Validators.required),
       IdServicio: new FormControl('', Validators.required)
     });
-
+    for(let name in companyNames) {
+      if((!Number(name)) && name != '0'){
+        this.companyNames.push(name);
+      };
+    }
   }
 
 
   onSubmit() {
     this.items = [];
     this.turn = this.requestTurnForm.value as VMRequestTurn;
-    this.turn.IdServicio = Number.parseInt(this.turn.IdServicio.toString());
+    this.turn.IdServicio =this.turn.IdServicio;
     this.turn.FechaFin = this.datePipe.transform(this.turn.FechaFin, 'yyyy-MM-dd') ?? '';
     this.turn.FechaInicio = this.datePipe.transform(this.turn.FechaInicio, 'yyyy-MM-dd') ?? '';
 

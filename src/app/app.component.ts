@@ -11,7 +11,9 @@ export class AppComponent {
 
 constructor(private router : Router){
 }
+  hidden : string = '';
   init() : void {
+    this.hidden = 'hidden';
     this.router.navigateByUrl('generateTurn');
   }
 }
