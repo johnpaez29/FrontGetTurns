@@ -1,0 +1,34 @@
+<div>
+  <h3>Cart</h3>
+  <router-outlet></router-outlet>
+  <form novalidate [formGroup]="requestTurnForm" (ngSubmit)="onSubmit()">
+  
+    <div>
+      <label for="FechaInicio">
+        Fecha Inicial
+      </label>
+      <input id="FechaInicio" type="text" formControlName="FechaInicio">
+    </div>
+  
+    <div>
+      <label for="FechaFin">
+        Fecha Final
+      </label>
+      <input id="FechaFin" type="text" formControlName="FechaFin">
+    </div>
+  
+    <div>
+      <label for="IdServicio">
+        Fecha Final
+      </label>
+      <input id="IdServicio" type="text" formControlName="IdServicio">
+    </div>
+  
+    <button class="button" type="submit">Generar</button>
+  
+  </form>
+
+  <ol>
+    <li *ngFor="let item of items"> {{ item.estado }} </li>
+ </ol>
+</div>
